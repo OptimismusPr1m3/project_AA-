@@ -1,1 +1,509 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #c8963e;
+  --gold-light: #e8b96a;
+  --gold-pale: #f5d98b;
+  --silver: #a8b4c0;
+  --silver-light: #d0dae2;
+  --dark: #080810;
+  --dark2: #0f0f1a;
+  --dark3: #161625;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--dark);
+  color: #e8e8f0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── SCROLL FADE ── */
+.fade-in {
+  opacity: 1;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in-delay-1 {
+  transition-delay: 0.1s;
+}
+.fade-in-delay-2 {
+  transition-delay: 0.2s;
+}
+.fade-in-delay-3 {
+  transition-delay: 0.3s;
+}
+.fade-in-delay-4 {
+  transition-delay: 0.4s;
+}
+.fade-in-delay-5 {
+  transition-delay: 0.5s;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background: linear-gradient(to bottom, rgba(8, 8, 16, 0.95), transparent);
+  backdrop-filter: blur(4px);
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+.nav-links a {
+  color: var(--silver);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover {
+  color: var(--gold-light);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 60%, rgba(200, 150, 62, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 30% 40%, rgba(168, 180, 192, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 30% at 70% 30%, rgba(200, 150, 62, 0.04) 0%, transparent 50%);
+}
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  animation: pulse 6s ease-in-out infinite;
+}
+.ring1 {
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-color: rgba(200, 150, 62, 0.08);
+  animation-delay: 0s;
+}
+.ring2 {
+  width: 850px;
+  height: 850px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-color: rgba(168, 180, 192, 0.06);
+  animation-delay: 2s;
+}
+.ring3 {
+  width: 1100px;
+  height: 1100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-color: rgba(200, 150, 62, 0.04);
+  animation-delay: 4s;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+}
+.hero-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.hero-title {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25em;
+  line-height: 1;
+  padding: 0 0.15em;
+  overflow: visible;
+}
+.word-aero {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  background: linear-gradient(
+    160deg,
+    var(--gold-pale) 0%,
+    var(--gold-light) 50%,
+    var(--silver-light) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 0.1em;
+}
+.word-art {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  background: linear-gradient(
+    160deg,
+    var(--gold-light) 0%,
+    var(--silver-light) 60%,
+    var(--gold) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 0.1em;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  color: var(--silver);
+  margin-top: 1rem;
+  text-transform: uppercase;
+  position: relative;
+}
+.hero-tagline {
+  font-size: 0.85rem;
+  color: rgba(168, 180, 192, 0.7);
+  margin-top: 2.5rem;
+  max-width: 420px;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+.hero-cta {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  padding: 0.9rem 2.5rem;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary span {
+  position: relative;
+  z-index: 1;
+  transition: font-weight 0.3s;
+  display: inline-block;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-light), var(--silver-light));
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+.btn-primary:hover::after {
+  transform: translateX(0);
+}
+.btn-primary:hover span {
+  font-weight: 700;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200, 150, 62, 0.35);
+}
+
+.btn-secondary {
+  padding: 0.9rem 2.5rem;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(168, 180, 192, 0.3);
+  color: var(--silver-light);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-secondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(200, 150, 62, 0.15), rgba(208, 218, 226, 0.15));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.btn-secondary:hover::after {
+  opacity: 1;
+}
+.btn-secondary:hover {
+  border-color: var(--silver-light);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(168, 180, 192, 0.15);
+}
+
+
+/* ── ABOUT ── */
+.about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+.about-visual { position: relative; height: 420px; }
+.about-card {
+  position: absolute; border: 1px solid rgba(200,150,62,0.2);
+  background: linear-gradient(135deg, rgba(22,22,37,0.9), rgba(15,15,26,0.9));
+  backdrop-filter: blur(10px);
+}
+.about-card-main { inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.instrument-icons {
+  display: flex; gap: 1.2rem; align-items: flex-end; justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.instrument-icons svg {
+  filter: drop-shadow(0 0 8px rgba(200,150,62,0.45));
+  transition: transform 0.3s, filter 0.3s;
+}
+.instrument-icons svg:hover {
+  transform: translateY(-4px) scale(1.08);
+  filter: drop-shadow(0 0 16px rgba(232,185,106,0.7));
+}
+.instrument-label { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold-light); letter-spacing: 0.1em; }
+.about-stat-card { padding: 1.2rem 1.5rem; width: 140px; text-align: center; }
+.about-stat-card:nth-child(2) { bottom: -1rem; right: -2rem; background: linear-gradient(135deg, rgba(200,150,62,0.1), rgba(22,22,37,0.95)); border-color: rgba(200,150,62,0.25); }
+.about-stat-card:nth-child(3) { top: -1rem; left: -2rem; background: linear-gradient(135deg, rgba(168,180,192,0.1), rgba(22,22,37,0.95)); border-color: rgba(168,180,192,0.25); }
+.about-photo { position:absolute; inset:0; border:1px solid rgba(200,150,62,0.2); background:linear-gradient(135deg,rgba(22,22,37,0.9),rgba(15,15,26,0.9)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; }
+.about-photo-icon { width:60px; height:60px; border:1px solid rgba(200,150,62,0.4); display:flex; align-items:center; justify-content:center; }
+.about-photo-label { font-family:'Cormorant Garamond',serif; font-size:1rem; color:rgba(200,150,62,0.6); letter-spacing:0.2em; text-align:center; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--gold-light); line-height: 1; }
+.stat-txt { font-size: 0.7rem; color: var(--silver); letter-spacing: 0.1em; margin-top: 0.2rem; }
+
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px; margin: 0 4rem; position: relative; overflow: hidden;
+  background: transparent;
+}
+.divider::after {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 200%; height: 100%;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(168,180,192,0.2) 10%,
+    rgba(200,150,62,0.6) 25%,
+    rgba(245,217,139,0.9) 37.5%,
+    rgba(200,150,62,0.6) 50%,
+    rgba(168,180,192,0.2) 60%,
+    transparent 75%,
+    rgba(168,180,192,0.2) 85%,
+    rgba(200,150,62,0.6) 87.5%,
+    transparent 100%
+  );
+  animation: dividerFlow 10s linear infinite;
+}
+@keyframes dividerFlow {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── SECTION COMMON ── */
+section { padding: 7rem 4rem; }
+.section-label {
+  font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.1;
+  background: linear-gradient(135deg, #fff 0%, var(--silver-light) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+}
+.section-body { color: rgba(208,218,226,0.7); line-height: 1.9; max-width: 560px; }
+
+/* ── ABOUT ── */
+.about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+.about-visual { position: relative; height: 420px; }
+.about-card {
+  position: absolute; border: 1px solid rgba(200,150,62,0.2);
+  background: linear-gradient(135deg, rgba(22,22,37,0.9), rgba(15,15,26,0.9));
+  backdrop-filter: blur(10px);
+}
+.about-card-main { inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.instrument-icons {
+  display: flex; gap: 1.2rem; align-items: flex-end; justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.instrument-icons svg {
+  filter: drop-shadow(0 0 8px rgba(200,150,62,0.45));
+  transition: transform 0.3s, filter 0.3s;
+}
+.instrument-icons svg:hover {
+  transform: translateY(-4px) scale(1.08);
+  filter: drop-shadow(0 0 16px rgba(232,185,106,0.7));
+}
+.instrument-label { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold-light); letter-spacing: 0.1em; }
+.about-stat-card { padding: 1.2rem 1.5rem; width: 140px; text-align: center; }
+.about-stat-card:nth-child(2) { bottom: -1rem; right: -2rem; background: linear-gradient(135deg, rgba(200,150,62,0.1), rgba(22,22,37,0.95)); border-color: rgba(200,150,62,0.25); }
+.about-stat-card:nth-child(3) { top: -1rem; left: -2rem; background: linear-gradient(135deg, rgba(168,180,192,0.1), rgba(22,22,37,0.95)); border-color: rgba(168,180,192,0.25); }
+.about-photo { position:absolute; inset:0; border:1px solid rgba(200,150,62,0.2); background:linear-gradient(135deg,rgba(22,22,37,0.9),rgba(15,15,26,0.9)); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; }
+.about-photo-icon { width:60px; height:60px; border:1px solid rgba(200,150,62,0.4); display:flex; align-items:center; justify-content:center; }
+.about-photo-label { font-family:'Cormorant Garamond',serif; font-size:1rem; color:rgba(200,150,62,0.6); letter-spacing:0.2em; text-align:center; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--gold-light); line-height: 1; }
+.stat-txt { font-size: 0.7rem; color: var(--silver); letter-spacing: 0.1em; margin-top: 0.2rem; }
+
+/* ── REPERTOIRE ── */
+.repertoire { background: var(--dark2); }
+.repertoire-inner { max-width: 1100px; margin: 0 auto; }
+.rep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 4rem; }
+.rep-item {
+  padding: 2.5rem 2rem; background: var(--dark3);
+  transition: all 0.4s; position: relative; overflow: hidden;
+}
+.rep-item::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--silver));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+}
+.rep-item:hover::before { transform: scaleX(1); }
+.rep-item:hover { background: rgba(22,22,37,0.8); }
+.rep-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: rgba(200,150,62,0.15); line-height: 1; }
+.rep-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-light); margin: 0.5rem 0; }
+.rep-desc { font-size: 0.8rem; color: rgba(168,180,192,0.6); line-height: 1.7; }
+
+/* ── MUSICIANS ── */
+.musicians-inner { max-width: 1100px; margin: 0 auto; }
+.musicians-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-top: 4rem; }
+.musician-card {
+  text-align: center; padding: 2rem 1rem;
+  border: 1px solid rgba(168,180,192,0.1);
+  background: linear-gradient(180deg, var(--dark3), var(--dark2));
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.musician-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--silver));
+  transform: scaleX(0); transition: transform 0.4s;
+}
+.musician-card:hover::after { transform: scaleX(1); }
+.musician-card:hover { border-color: rgba(200,150,62,0.3); transform: translateY(-4px); }
+.musician-avatar {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 1rem;
+  background: linear-gradient(135deg, var(--gold), var(--silver));
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+}
+.musician-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #e8e8f0; }
+.musician-inst { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em; margin-top: 0.3rem; }
+
+/* ── BOOKING ── */
+.booking { background: linear-gradient(135deg, var(--dark2), var(--dark3)); text-align: center; }
+.booking-inner { max-width: 640px; margin: 0 auto; }
+.booking .section-body { margin: 0 auto 3rem; }
+.booking-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-field label { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--silver); text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+.form-field input, .form-field textarea, .form-field select {
+  width: 100%; background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(168,180,192,0.2); color: #e8e8f0;
+  padding: 0.8rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.85rem;
+  outline: none; transition: border-color 0.3s; -webkit-appearance: none;
+}
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-color: var(--gold); }
+.form-field textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  margin-top: 1rem; padding: 1rem; border: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--dark); font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.25em;
+  text-transform: uppercase; transition: all 0.3s;
+}
+.form-submit:hover { box-shadow: 0 8px 40px rgba(200,150,62,0.4); transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(168,180,192,0.1);
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+  font-style: italic; letter-spacing: 0.2em;
+  background: linear-gradient(135deg, var(--gold-light), var(--silver-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.footer-copy { font-size: 0.7rem; color: rgba(168,180,192,0.4); letter-spacing: 0.1em; }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: 0.7rem; color: rgba(168,180,192,0.5); text-decoration: none; letter-spacing: 0.15em; transition: color 0.3s; }
+.footer-links a:hover { color: var(--gold-light); }
+
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  .nav-links { display: none; }
+  section { padding: 5rem 2rem; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-visual { height: 300px; }
+  .rep-grid { grid-template-columns: 1fr 1fr; }
+  .musicians-grid { grid-template-columns: repeat(3, 1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
+
