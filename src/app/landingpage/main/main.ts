@@ -14,6 +14,8 @@ import { Divider } from '../divider/divider';
 import { Repertoire } from '../repertoire/repertoire';
 import { Musicians } from '../musicians/musicians';
 import { isPlatformBrowser } from '@angular/common';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 interface Wave {
   freq: number;
   amp: number;
@@ -32,7 +34,6 @@ export class Main implements OnInit, AfterViewInit, OnDestroy {
   private ctx!: CanvasRenderingContext2D;
   private animFrameId!: number;
   private t = 0;
-  private observer!: IntersectionObserver;
   activeSectionId = '';
   private readonly isBrowser: boolean;
 
@@ -47,25 +48,70 @@ export class Main implements OnInit, AfterViewInit, OnDestroy {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  // ── Nav highlight ──
-  ngOnInit(): void {
-    if (this.isBrowser) {
-      this.initScrollObserver();
-    }
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    if (this.isBrowser) {
-      this.initCanvas();
-      this.animate();
-    }
+    if (!this.isBrowser) return;
+
+    // GSAP ScrollTrigger registrieren – muss einmalig passieren
+    // gsap.registerPlugin(ScrollTrigger);
+
+    this.initCanvas();
+    this.animate();
+    //this.initHeroAnimations();
+    //this.initScrollAnimations();
+
+     setTimeout(() => {
+    this.initScrollAnimations();
+  }, 100);
   }
 
   ngOnDestroy(): void {
-    if (this.isBrowser) {
-      cancelAnimationFrame(this.animFrameId);
-      this.observer?.disconnect();
-    }
+    if (!this.isBrowser) return;
+    cancelAnimationFrame(this.animFrameId);
+    // Alle ScrollTrigger aufräumen um Memory Leaks zu vermeiden
+    ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+
+  //── Hero Animationen (einmalig beim Laden) ──
+  private initHeroAnimations(): void {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    tl.from('.hero-eyebrow', { opacity: 0, y: 20, duration: 0.8 })
+      .from('.word-aero',    { opacity: 0, y: 60, duration: 1.0 }, '-=0.4')
+      .from('.word-art',     { opacity: 0, y: 60, duration: 1.0 }, '-=0.8')
+      .from('.hero-sub',     { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
+      .from('.hero-tagline', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
+      .from('.hero-cta',     { opacity: 0, y: 20, duration: 0.8 }, '-=0.4');
+  }
+
+  // ── Scroll Animationen für Sections ──
+  private initScrollAnimations(): void {
+
+    // // Repertoire Cards – gestaffelt
+    // gsap.from('.rep-item', {
+    //   scrollTrigger: { trigger: '.rep-grid', start: 'top 80%', toggleActions: 'play reverse play reverse' },
+    //   opacity: 0, y: 40, duration: 0.7, ease: 'power3.out',
+    //   stagger: 0.12  // jede Karte 120ms nach der vorherigen
+    // });
+
+    // // Musiker Cards – gestaffelt
+    // gsap.from('.musician-card', {
+    //   scrollTrigger: { trigger: '.musicians-grid', start: 'top 80%', toggleActions: 'play reverse play reverse' },
+    //   opacity: 0, y: 40, duration: 0.7, ease: 'power3.out',
+    //   stagger: 0.1
+    // });
+
+    // Booking Section
+    // gsap.from('.booking-inner .section-label, .booking-inner .section-title, .booking-inner .section-body', {
+    //   scrollTrigger: { trigger: '.booking-inner', start: 'top 80%', toggleActions: 'play reverse play reverse' },
+    //   opacity: 0, y: 30, duration: 0.8, ease: 'power3.out',
+    //   stagger: 0.15
+    // });
+    // gsap.from('.booking-form', {
+    //   scrollTrigger: { trigger: '.booking-form', start: 'top 85%', toggleActions: 'play reverse play reverse' },
+    //   opacity: 0, y: 30, duration: 0.9, ease: 'power3.out', delay: 0.3
+    // });
   }
 
   // ── Canvas Setup ──
@@ -77,24 +123,22 @@ export class Main implements OnInit, AfterViewInit, OnDestroy {
 
   private resizeCanvas(): void {
     const canvas = this.waveCanvasRef.nativeElement;
-    canvas.width = canvas.offsetWidth;
+    canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
   }
 
   @HostListener('window:resize')
   onResize(): void {
-    this.resizeCanvas();
+    if (this.isBrowser) this.resizeCanvas();
   }
 
   // ── Wave Animation ──
   private animate(): void {
     const canvas = this.waveCanvasRef.nativeElement;
-    const ctx = this.ctx;
     const W = canvas.width;
     const H = canvas.height;
 
-    ctx.clearRect(0, 0, W, H);
-
+    this.ctx.clearRect(0, 0, W, H);
     this.drawWave(this.waves[0], '#f5d98b', '#e8b96a', 0.9, W, H);
     this.drawWave(this.waves[1], '#e8b96a', '#d0dae2', 0.7, W, H);
     this.drawWave(this.waves[2], '#c8963e', '#f5d98b', 0.5, W, H);
@@ -111,64 +155,41 @@ export class Main implements OnInit, AfterViewInit, OnDestroy {
     colorStop2: string,
     alpha: number,
     W: number,
-    H: number,
+    H: number
   ): void {
-    const ctx = this.ctx;
-    const grad = ctx.createLinearGradient(0, 0, W, 0);
-    grad.addColorStop(0, colorStop1);
+    const grad = this.ctx.createLinearGradient(0, 0, W, 0);
+    grad.addColorStop(0,   colorStop1);
     grad.addColorStop(0.5, colorStop2);
-    grad.addColorStop(1, colorStop1);
+    grad.addColorStop(1,   colorStop1);
 
-    ctx.beginPath();
-    ctx.strokeStyle = grad;
-    ctx.globalAlpha = alpha;
-    ctx.lineWidth = 2.5;
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = grad;
+    this.ctx.globalAlpha = alpha;
+    this.ctx.lineWidth = 1.5;
 
     for (let x = 0; x <= W; x++) {
       const y =
         H / 2 +
-        Math.sin((x / W) * Math.PI * 2 * wave.freq + this.t * wave.speed * 10 + wave.phase) *
-          wave.amp *
-          Math.sin((x / W) * Math.PI); // edge envelope
-      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        Math.sin(
+          (x / W) * Math.PI * 2 * wave.freq +
+          this.t * wave.speed * 10 +
+          wave.phase
+        ) * wave.amp * Math.sin((x / W) * Math.PI);
+      x === 0 ? this.ctx.moveTo(x, y) : this.ctx.lineTo(x, y);
     }
 
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-  }
-
-  // ── Scroll Fade IntersectionObserver ──
-  private initScrollObserver(): void {
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' },
-    );
-
-    // Observer wird nach dem View-Init angehängt – siehe ngAfterViewInit
-    setTimeout(() => {
-      document.querySelectorAll('.fade-in').forEach((el) => {
-        this.observer.observe(el);
-      });
-    }, 0);
+    this.ctx.stroke();
+    this.ctx.globalAlpha = 1;
   }
 
   // ── Nav active section on scroll ──
   @HostListener('window:scroll')
   onScroll(): void {
+    if (!this.isBrowser) return;
     const sections = document.querySelectorAll<HTMLElement>('section[id]');
     let current = '';
-    sections.forEach((s) => {
-      if (window.scrollY >= s.offsetTop - 200) {
-        current = s.id;
-      }
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
     });
     this.activeSectionId = current;
   }
