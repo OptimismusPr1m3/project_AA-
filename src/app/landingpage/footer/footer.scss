@@ -1,0 +1,36 @@
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(168, 180, 192, 0.1);
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  background: linear-gradient(135deg, var(--gold-light), var(--silver-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.footer-copy {
+  font-size: 0.7rem;
+  color: rgba(168, 180, 192, 0.4);
+  letter-spacing: 0.1em;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+.footer-links a {
+  font-size: 0.7rem;
+  color: rgba(168, 180, 192, 0.5);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  transition: color 0.3s;
+}
+.footer-links a:hover {
+  color: var(--gold-light);
+}
