@@ -44,4 +44,6 @@ __screenshots__/
 Thumbs.db
 
 # CLAUDE
-.claude/
+.claude
+
+/src/app/test-landing
