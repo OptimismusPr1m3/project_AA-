@@ -15,8 +15,8 @@ export class Repertoire {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  titlesMoves: string = 'back'
-  genreCards: string = 'circ.in'
+  titlesMoves: string = 'back';
+  genreCards: string = 'circ.in';
 
   private initScrollanimations(): void {
     gsap.from('.repertoire-inner .section-label', {
@@ -37,27 +37,49 @@ export class Repertoire {
         toggleActions: 'play reverse play reverse',
       },
       opacity: 0,
-      x: -40, 
+      x: -40,
       duration: 0.8,
       ease: this.titlesMoves,
     });
 
-    gsap.from('.rep-item .rep-num', {
-      scrollTrigger: {
-        trigger: '.repertoire-inner .section-label',
-        start: 'top 70%',
-        toggleActions: 'play reverse play reverse',
+    gsap.fromTo(
+      '.rep-grid .rep-item:nth-child(-n+3)',
+      { opacity: 0, y: -60},
+      {
+        scrollTrigger: {
+          trigger: '.rep-grid .rep-item:nth-child(1)',
+          start: 'top 80%',
+          toggleActions: 'play reverse play reverse',
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.4,
       },
-      opacity: 1.5,
-      x: -40, 
-      duration: 0.8,
-      ease: this.genreCards ,
-    });
+    );
 
+    gsap.fromTo(
+      '.rep-grid .rep-item:nth-child(n+4)',
+      { opacity: 0, y: 60 },
+      {
+        scrollTrigger: {
+          trigger: '.rep-grid .rep-item:nth-child(4)',
+          start: 'top 85%',
+          toggleActions: 'play reverse play reverse',
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.4,
+      },
+    );
   }
 
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;
-    this.initScrollanimations();
+    setTimeout(() => {
+      //console.log('rep-items found:', document.querySelectorAll('.rep-grid .rep-item').length);
+      this.initScrollanimations();
+    }, 200);
   }
 }
