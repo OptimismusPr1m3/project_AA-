@@ -1,43 +1,86 @@
-
-<!-- ── BOOKING COMPONENT ── -->
 <section id="booking" class="booking">
   <div class="booking-inner">
     <div class="section-label">Kontakt</div>
     <h2 class="section-title">Booking anfragen</h2>
-    <p class="section-body">Interesse an einem unvergesslichen Auftritt? Wir freuen uns über jede Anfrage – ob Konzert, Firmenfeier, Hochzeit oder Festival.</p>
-    <div class="booking-form">
+    <p class="section-body">
+      Interesse an einem Auftritt? Wir freuen uns über jede
+      Anfrage – ob Konzert, Gottesdienst, Platzhalter, Platzhalter
+    </p>
+
+    <form class="booking-form" [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+
       <div class="form-row">
         <div class="form-field">
-          <label>Name</label>
-          <input type="text" placeholder="Ihr Name">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="Ihr Name"
+            formControlName="name"
+          />
+          @if (isInvalid('name')) {
+            <span class="form-error">Name ist erforderlich.</span>
+          }
         </div>
+
         <div class="form-field">
-          <label>E-Mail</label>
-          <input type="email" placeholder="ihre@email.de">
+          <label for="email">E-Mail</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="ihre@email.de"
+            formControlName="email"
+          />
+          @if (isInvalid('email')) {
+            <span class="form-error">Bitte eine gültige E-Mail-Adresse eingeben.</span>
+          }
         </div>
       </div>
+
       <div class="form-row">
         <div class="form-field">
-          <label>Anlass</label>
-          <select>
+          <label for="anlass">Anlass</label>
+          <select id="anlass" formControlName="anlass">
             <option value="">Bitte wählen …</option>
-            <option>Konzert</option>
-            <option>Hochzeit</option>
-            <option>Firmenfeier</option>
-            <option>Festival</option>
-            <option>Sonstiges</option>
+            @for (a of anlaesse; track a) {
+              <option [value]="a">{{ a }}</option>
+            }
           </select>
+          @if (isInvalid('anlass')) {
+            <span class="form-error">Bitte einen Anlass auswählen.</span>
+          }
         </div>
+
         <div class="form-field">
-          <label>Datum</label>
-          <input type="date">
+          <label for="datum">Datum</label>
+          <input
+            id="datum"
+            type="date"
+            formControlName="datum"
+            [min]="minDate"
+          />
+          @if (isInvalid('datum')) {
+            <span class="form-error">Bitte ein Datum angeben.</span>
+          }
         </div>
       </div>
+
       <div class="form-field">
-        <label>Nachricht</label>
-        <textarea placeholder="Erzählen Sie uns von Ihrem Event …"></textarea>
+        <label for="nachricht">Nachricht</label>
+        <textarea
+          id="nachricht"
+          placeholder="Erzählen Sie uns von Ihrem Event …"
+          formControlName="nachricht"
+        ></textarea>
+        @if (isInvalid('nachricht')) {
+          <span class="form-error">Bitte eine Nachricht eingeben (mind. 10 Zeichen).</span>
+        }
       </div>
-      <button class="form-submit">Anfrage senden</button>
-    </div>
+
+      <button class="form-submit" type="submit">
+        Anfrage senden
+      </button>
+
+    </form>
   </div>
 </section>

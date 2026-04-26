@@ -18,6 +18,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Booking } from "../booking/booking";
 import { Footer } from "../footer/footer";
+import { RouterLink } from '@angular/router';
 interface Wave {
   freq: number;
   amp: number;
@@ -26,7 +27,7 @@ interface Wave {
 }
 @Component({
   selector: 'app-main',
-  imports: [About, Divider, Repertoire, Musicians, Booking, Footer],
+  imports: [About, Divider, Repertoire, Musicians, Booking, Footer, RouterLink],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })
