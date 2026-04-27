@@ -1,0 +1,200 @@
+/* ── APPOINTMENTS ── */
+.appointments-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.appointments-header {
+  margin-bottom: 3.5rem;
+}
+
+/* ── LIST ── */
+.appointments-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+}
+
+.apt-card {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.8rem 2rem;
+  background: var(--dark3);
+  position: relative;
+  transition: background 0.3s;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: scaleY(0);
+    transition: transform 0.4s ease;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to bottom, var(--gold), var(--silver));
+    transform-origin: top;
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to top, var(--gold), var(--silver));
+    transform-origin: bottom;
+  }
+
+  &:hover {
+    background: rgba(22, 22, 37, 0.9);
+
+    &::before,
+    &::after {
+      transform: scaleY(1);
+    }
+  }
+}
+
+/* ── DATE ── */
+.apt-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  text-align: center;
+  flex-shrink: 0;
+  font-style: normal;
+}
+
+.apt-day {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold-pale), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.apt-month-year {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(168, 180, 192, 0.6);
+}
+
+/* ── DETAILS ── */
+.apt-details {
+  min-width: 0;
+}
+
+.apt-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #e8e8f0;
+  margin-bottom: 0.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.apt-location {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: rgba(168, 180, 192, 0.55);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.apt-pin {
+  width: 10px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+/* ── TYPE BADGE ── */
+.apt-type {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.apt-type--konzert {
+  color: var(--gold-light);
+  border-color: rgba(200, 150, 62, 0.35);
+}
+
+.apt-type--gottesdienst {
+  color: var(--silver-light);
+  border-color: rgba(208, 218, 226, 0.3);
+}
+
+.apt-type--sonstiges {
+  color: rgba(168, 180, 192, 0.7);
+  border-color: rgba(168, 180, 192, 0.25);
+}
+
+/* ── EMPTY STATE ── */
+.appointments-empty {
+  font-size: 0.9rem;
+  color: rgba(168, 180, 192, 0.5);
+  text-align: center;
+  padding: 3rem;
+  border: 1px dashed rgba(168, 180, 192, 0.15);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .apt-card {
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .apt-type {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    width: fit-content;
+  }
+
+  .apt-day {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .apt-card {
+    grid-template-columns: 70px 1fr;
+    gap: 0.8rem 1.2rem;
+    padding: 1.2rem 1rem;
+  }
+
+  .apt-title {
+    font-size: 1.15rem;
+    white-space: normal;
+  }
+
+  .apt-location {
+    white-space: normal;
+  }
+}

@@ -1,24 +1,36 @@
+<nav class="main-nav" aria-label="Hauptnavigation">
+  <a [routerLink]="[]" fragment="home" class="nav-logo" aria-label="Aero Art – zur Startseite">Aero Art</a>
+  <ul class="nav-links">
+    <li><a [routerLink]="[]" fragment="about"      [class.active]="activeSectionId === 'about'">Über uns</a></li>
+    <li><a [routerLink]="[]" fragment="repertoire" [class.active]="activeSectionId === 'repertoire'">Repertoire</a></li>
+    <li><a [routerLink]="[]" fragment="musicians"  [class.active]="activeSectionId === 'musicians'">Ensemble</a></li>
+    <li><a [routerLink]="[]" fragment="appointments" [class.active]="activeSectionId === 'appointments'">Termine</a></li>
+  </ul>
+</nav>
 
-<!-- ── HERO COMPONENT ── -->
-<section id="#" class="hero" #home>
-  <div class="hero-bg"></div>
-  <div class="ring ring1"></div>
-  <div class="ring ring2"></div>
-  <div class="ring ring3"></div>
-  <div class="hero-eyebrow">Blechbläserquintett</div>
-  <h1 class="hero-title">
+<!-- ── HERO SECTION ── -->
+<section id="home" class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="ring ring1" aria-hidden="true"></div>
+  <div class="ring ring2" aria-hidden="true"></div>
+  <div class="ring ring3" aria-hidden="true"></div>
+
+  <p class="hero-eyebrow" aria-hidden="true">Blechbläserquintett</p>
+  <h1 class="hero-title" id="hero-title">
     <span class="word-aero">Aero</span>
     <span class="word-art">Art</span>
   </h1>
-  <canvas #waveCanvas style="position:absolute;top:50%;left:4rem;right:4rem;width:calc(100% - 8rem);height:160px;transform:translateY(-50%);opacity:0.4;pointer-events:none;z-index:0;"></canvas>
+  <canvas #waveCanvas class="hero-canvas" aria-hidden="true"></canvas>
   <p class="hero-sub">Brass · Klang · Moderne</p>
   <p class="hero-tagline">Lorem ipsum dolor sit amet. Lorem, ipsum dolor.</p>
+
   <div class="hero-cta">
-    <a [routerLink]="[]" fragment="booking" class="btn-primary"><span>Termin anfragen</span></a>
+    <a [routerLink]="[]" fragment="booking" class="btn-primary">
+      <span>Termin anfragen</span>
+    </a>
     <a [routerLink]="[]" fragment="repertoire" class="btn-secondary">Repertoire entdecken</a>
   </div>
 </section>
-
 
 <app-divider></app-divider>
 <app-about></app-about>
@@ -27,6 +39,6 @@
 <app-divider></app-divider>
 <app-musicians></app-musicians>
 <app-divider></app-divider>
-<app-booking></app-booking>
+<app-appointments></app-appointments>
 <app-divider></app-divider>
 <app-footer></app-footer>

@@ -1,14 +1,19 @@
-<section id="booking" class="booking">
+<section id="booking" class="booking" aria-labelledby="booking-title">
   <div class="booking-inner">
     <div class="section-label">Kontakt</div>
-    <h2 class="section-title">Booking anfragen</h2>
+    <h2 class="section-title" id="booking-title">Booking anfragen</h2>
     <p class="section-body">
       Interesse an einem Auftritt? Wir freuen uns über jede
-      Anfrage – ob Konzert, Gottesdienst, Platzhalter, Platzhalter
+      Anfrage – ob Konzert, Gottesdienst oder ein besonderer Anlass.
     </p>
 
-    <form class="booking-form" [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
-
+    <form
+      class="booking-form"
+      [formGroup]="bookingForm"
+      (ngSubmit)="onSubmit()"
+      novalidate
+      aria-label="Booking-Anfrageformular"
+    >
       <div class="form-row">
         <div class="form-field">
           <label for="name">Name</label>
@@ -17,9 +22,12 @@
             type="text"
             placeholder="Ihr Name"
             formControlName="name"
+            autocomplete="name"
+            [attr.aria-invalid]="isInvalid('name') || null"
+            aria-describedby="name-error"
           />
           @if (isInvalid('name')) {
-            <span class="form-error">Name ist erforderlich.</span>
+            <span id="name-error" class="form-error" role="alert">Name ist erforderlich.</span>
           }
         </div>
 
@@ -30,9 +38,12 @@
             type="email"
             placeholder="ihre@email.de"
             formControlName="email"
+            autocomplete="email"
+            [attr.aria-invalid]="isInvalid('email') || null"
+            aria-describedby="email-error"
           />
           @if (isInvalid('email')) {
-            <span class="form-error">Bitte eine gültige E-Mail-Adresse eingeben.</span>
+            <span id="email-error" class="form-error" role="alert">Bitte eine gültige E-Mail-Adresse eingeben.</span>
           }
         </div>
       </div>
@@ -40,14 +51,19 @@
       <div class="form-row">
         <div class="form-field">
           <label for="anlass">Anlass</label>
-          <select id="anlass" formControlName="anlass">
+          <select
+            id="anlass"
+            formControlName="anlass"
+            [attr.aria-invalid]="isInvalid('anlass') || null"
+            aria-describedby="anlass-error"
+          >
             <option value="">Bitte wählen …</option>
             @for (a of anlaesse; track a) {
               <option [value]="a">{{ a }}</option>
             }
           </select>
           @if (isInvalid('anlass')) {
-            <span class="form-error">Bitte einen Anlass auswählen.</span>
+            <span id="anlass-error" class="form-error" role="alert">Bitte einen Anlass auswählen.</span>
           }
         </div>
 
@@ -58,9 +74,11 @@
             type="date"
             formControlName="datum"
             [min]="minDate"
+            [attr.aria-invalid]="isInvalid('datum') || null"
+            aria-describedby="datum-error"
           />
           @if (isInvalid('datum')) {
-            <span class="form-error">Bitte ein Datum angeben.</span>
+            <span id="datum-error" class="form-error" role="alert">Bitte ein Datum angeben.</span>
           }
         </div>
       </div>
@@ -71,16 +89,17 @@
           id="nachricht"
           placeholder="Erzählen Sie uns von Ihrem Event …"
           formControlName="nachricht"
+          [attr.aria-invalid]="isInvalid('nachricht') || null"
+          aria-describedby="nachricht-error"
         ></textarea>
         @if (isInvalid('nachricht')) {
-          <span class="form-error">Bitte eine Nachricht eingeben (mind. 10 Zeichen).</span>
+          <span id="nachricht-error" class="form-error" role="alert">Bitte eine Nachricht eingeben (mind. 10 Zeichen).</span>
         }
       </div>
 
       <button class="form-submit" type="submit">
         Anfrage senden
       </button>
-
     </form>
   </div>
 </section>

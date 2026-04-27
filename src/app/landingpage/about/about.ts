@@ -67,20 +67,8 @@ export class About {
       duration: 1.0,
       ease: this.animString,
     });
-  }
-
-
-
-  // moveSet1 = {scrollTrigger: {
-  //       trigger: '.about-visual',
-  //       start: 'top 80%',
-  //       toggleActions: 'play reverse play reverse',
-  //     },
-  //     opacity: 0,
-  //     x: 40,
-  //     duration: 1.0,
-  //     ease: 'power3.in',} 
-
+  } 
+  
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {

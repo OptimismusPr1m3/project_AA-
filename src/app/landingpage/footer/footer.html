@@ -1,10 +1,10 @@
 <!-- ── FOOTER COMPONENT ── -->
 <footer>
-  <div [routerLink]="[]" fragment="#" class="footer-logo">Aero Art</div>
-  <div class="footer-copy">© 2026 Aero Art Blechbläserquintett</div>
-  <div class="footer-links">
-    <a [routerLink]="[]" fragment="'impressum'">Impressum</a>
-    <a [routerLink]="[]" fragment="'datenschutz'">Datenschutz</a>
-    <a [routerLink]="[]" fragment="'kontakt' ">Kontakt</a>
-  </div>
+  <a [routerLink]="[]" fragment="home" class="footer-logo">Aero Art</a>
+  <p class="footer-copy">© 2026 Aero Art Blechbläserquintett</p>
+  <nav class="footer-links" aria-label="Rechtliche Links">
+    <a [routerLink]="[]" fragment="impressum">Impressum</a>
+    <a [routerLink]="[]" fragment="datenschutz">Datenschutz</a>
+    <a [routerLink]="[]" fragment="kontakt">Kontakt</a>
+  </nav>
 </footer>

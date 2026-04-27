@@ -16,7 +16,7 @@ import { Musicians } from '../musicians/musicians';
 import { isPlatformBrowser } from '@angular/common';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Booking } from "../booking/booking";
+import { Appointments } from "../appointments/appointments";
 import { Footer } from "../footer/footer";
 import { RouterLink } from '@angular/router';
 interface Wave {
@@ -27,7 +27,7 @@ interface Wave {
 }
 @Component({
   selector: 'app-main',
-  imports: [About, Divider, Repertoire, Musicians, Booking, Footer, RouterLink],
+  imports: [About, Divider, Repertoire, Musicians, Appointments, Footer, RouterLink],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })
@@ -56,17 +56,10 @@ export class Main implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;
 
-    // GSAP ScrollTrigger registrieren – muss einmalig passieren
-    // gsap.registerPlugin(ScrollTrigger);
-
     this.initCanvas();
     this.animate();
     //this.initHeroAnimations();
     //this.initScrollAnimations();
-
-     setTimeout(() => {
-    this.initScrollAnimations();
-  }, 100);
   }
 
   ngOnDestroy(): void {
@@ -86,35 +79,6 @@ export class Main implements OnInit, AfterViewInit, OnDestroy {
       .from('.hero-sub',     { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
       .from('.hero-tagline', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
       .from('.hero-cta',     { opacity: 0, y: 20, duration: 0.8 }, '-=0.4');
-  }
-
-  // ── Scroll Animationen für Sections ──
-  private initScrollAnimations(): void {
-
-    // // Repertoire Cards – gestaffelt
-    // gsap.from('.rep-item', {
-    //   scrollTrigger: { trigger: '.rep-grid', start: 'top 80%', toggleActions: 'play reverse play reverse' },
-    //   opacity: 0, y: 40, duration: 0.7, ease: 'power3.out',
-    //   stagger: 0.12  // jede Karte 120ms nach der vorherigen
-    // });
-
-    // // Musiker Cards – gestaffelt
-    // gsap.from('.musician-card', {
-    //   scrollTrigger: { trigger: '.musicians-grid', start: 'top 80%', toggleActions: 'play reverse play reverse' },
-    //   opacity: 0, y: 40, duration: 0.7, ease: 'power3.out',
-    //   stagger: 0.1
-    // });
-
-    // Booking Section
-    // gsap.from('.booking-inner .section-label, .booking-inner .section-title, .booking-inner .section-body', {
-    //   scrollTrigger: { trigger: '.booking-inner', start: 'top 80%', toggleActions: 'play reverse play reverse' },
-    //   opacity: 0, y: 30, duration: 0.8, ease: 'power3.out',
-    //   stagger: 0.15
-    // });
-    // gsap.from('.booking-form', {
-    //   scrollTrigger: { trigger: '.booking-form', start: 'top 85%', toggleActions: 'play reverse play reverse' },
-    //   opacity: 0, y: 30, duration: 0.9, ease: 'power3.out', delay: 0.3
-    // });
   }
 
   // ── Canvas Setup ──

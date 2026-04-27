@@ -1,34 +1,114 @@
-<!-- ── MUSICIANS COMPONENT ── -->
-<section id="musicians">
+<!-- ── MUSICIANS SECTION ── -->
+<section id="musicians" aria-labelledby="musicians-title">
   <div class="musicians-inner">
-    <div class="section-label fade-in">Das Ensemble</div>
-    <h2 class="section-title fade-in fade-in-delay-1">Die Musiker</h2>
-    <div class="musicians-grid">
-      <div class="musician-card">
-        <div class="musician-avatar">🎺</div>
-        <div class="musician-name">1. Trompete</div>
-        <div class="musician-inst">Sopranstimme</div>
-      </div>
-      <div class="musician-card">
-        <div class="musician-avatar">🎺</div>
-        <div class="musician-name">2. Trompete</div>
-        <div class="musician-inst">Altstimme</div>
-      </div>
-      <div class="musician-card">
-        <div class="musician-avatar">📯</div>
-        <div class="musician-name">Horn</div>
-        <div class="musician-inst">Mittelstimme</div>
-      </div>
-      <div class="musician-card">
-        <div class="musician-avatar">🎷</div>
-        <div class="musician-name">Posaune</div>
-        <div class="musician-inst">Tenorstimme</div>
-      </div>
-      <div class="musician-card">
-        <div class="musician-avatar">🎸</div>
-        <div class="musician-name">Tuba</div>
-        <div class="musician-inst">Bassstimme</div>
-      </div>
-    </div>
+    <div class="section-label">Das Ensemble</div>
+    <h2 class="section-title" id="musicians-title">Die Musiker</h2>
+    <ul class="musicians-grid">
+
+      <!-- 1. Trompete – Matthias -->
+      <li class="musician-card">
+        <div class="musician-avatar" aria-hidden="true">
+          <!-- Trumpet: horizontal tube · 3 piston circles above · flared bell right · mouthpiece left -->
+          <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6"  y1="22" x2="36" y2="22"/>
+            <path d="M36 22 C40 22 44 17 49 10"/>
+            <path d="M36 22 C40 22 44 27 49 34"/>
+            <circle cx="14" cy="15" r="4"/>
+            <circle cx="22" cy="15" r="4"/>
+            <circle cx="30" cy="15" r="4"/>
+            <line x1="14" y1="19" x2="14" y2="22"/>
+            <line x1="22" y1="19" x2="22" y2="22"/>
+            <line x1="30" y1="19" x2="30" y2="22"/>
+            <path d="M6 20 C4 20 3 21 3 22 C3 23 4 24 6 24"/>
+          </svg>
+        </div>
+        <h3 class="musician-name">Matthias</h3>
+        <p class="musician-instrument">1. Trompete</p>
+
+      </li>
+
+      <!-- 2. Trompete – Peter -->
+      <li class="musician-card">
+        <div class="musician-avatar" aria-hidden="true">
+          <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6"  y1="22" x2="36" y2="22"/>
+            <path d="M36 22 C40 22 44 17 49 10"/>
+            <path d="M36 22 C40 22 44 27 49 34"/>
+            <circle cx="14" cy="15" r="4"/>
+            <circle cx="22" cy="15" r="4"/>
+            <circle cx="30" cy="15" r="4"/>
+            <line x1="14" y1="19" x2="14" y2="22"/>
+            <line x1="22" y1="19" x2="22" y2="22"/>
+            <line x1="30" y1="19" x2="30" y2="22"/>
+            <path d="M6 20 C4 20 3 21 3 22 C3 23 4 24 6 24"/>
+          </svg>
+        </div>
+        <h3 class="musician-name">Peter</h3>
+        <p class="musician-instrument">2. Trompete</p>
+
+      </li>
+
+      <!-- Horn – Ilse -->
+      <li class="musician-card">
+        <div class="musician-avatar" aria-hidden="true">
+          <!-- French Horn: large circle (coil) · bell opening lower-right · 3 rotary-valve circles top -->
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="20" cy="25" r="14"/>
+            <path d="M31 35 L39 42"/>
+            <path d="M31 35 L35 43"/>
+            <circle cx="12" cy="12" r="3"/>
+            <circle cx="20" cy="9"  r="3"/>
+            <circle cx="28" cy="11" r="3"/>
+            <path d="M28 14 C30 17 32 19 33 22"/>
+          </svg>
+        </div>
+        <h3 class="musician-name">Ilse</h3>
+        <p class="musician-instrument">Horn</p>
+
+      </li>
+
+      <!-- Posaune – Andreas -->
+      <li class="musician-card">
+        <div class="musician-avatar" aria-hidden="true">
+          <!-- Trombone: two parallel tubes · U-bend slide right · flared bell left · cross-brace -->
+          <svg viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="10" y1="13" x2="46" y2="13"/>
+            <line x1="18" y1="23" x2="46" y2="23"/>
+            <path d="M46 13 C49 13 50 16 50 18 C50 20 49 23 46 23"/>
+            <path d="M10 13 C6 11 3 7 2 3"/>
+            <path d="M10 13 C7 17 7 22 8 27"/>
+            <line x1="18" y1="13" x2="18" y2="23"/>
+          </svg>
+        </div>
+        <h3 class="musician-name">Andreas</h3>
+        <p class="musician-instrument">Posaune</p>
+
+      </li>
+
+      <!-- Tuba – Sebastian -->
+      <li class="musician-card">
+        <div class="musician-avatar" aria-hidden="true">
+          <!-- Tuba: wide bell arch at top · round body · 3 piston circles on body -->
+          <svg viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 16 C5 4 35 4 35 16"/>
+            <path d="M5 16 C7 20 10 24 11 28"/>
+            <path d="M35 16 C33 20 30 24 29 28"/>
+            <ellipse cx="20" cy="37" rx="11" ry="9"/>
+            <circle cx="14" cy="36" r="2.5"/>
+            <circle cx="20" cy="36" r="2.5"/>
+            <circle cx="26" cy="36" r="2.5"/>
+          </svg>
+        </div>
+        <h3 class="musician-name">Sebastian</h3>
+        <p class="musician-instrument">Tuba</p>
+
+      </li>
+
+    </ul>
   </div>
 </section>
