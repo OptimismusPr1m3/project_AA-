@@ -1,5 +1,17 @@
 <nav class="main-nav" aria-label="Hauptnavigation">
-  <a [routerLink]="[]" fragment="home" class="nav-logo" aria-label="Aero Art – zur Startseite">Aero Art</a>
+  <a [routerLink]="[]" fragment="home" class="nav-logo" aria-label="Aero Art – zur Startseite">
+    <svg width="48" height="48" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none">
+      <g transform="translate(32,33)" stroke="currentColor" stroke-linecap="round">
+        <line x1="-13" y1="12" x2="-1.5" y2="-13" stroke-width="3.8"/>
+        <line x1="13"  y1="12" x2="1.5"  y2="-13" stroke-width="3.8"/>
+        <line x1="-13" y1="12" x2="-19"  y2="12"  stroke-width="3.8"/>
+        <line x1="13"  y1="12" x2="19"   y2="12"  stroke-width="3.8"/>
+        <line x1="-1.5" y1="-13" x2="0"  y2="12"  stroke-width="3.8"/>
+        <line x1="-14" y1="2"  x2="-1.5" y2="2"   stroke-width="3"/>
+        <line x1="1.5" y1="2"  x2="14"   y2="2"   stroke-width="3"/>
+      </g>
+    </svg>
+  </a>
   <ul class="nav-links">
     <li><a [routerLink]="[]" fragment="about"      [class.active]="activeSectionId === 'about'">Über uns</a></li>
     <li><a [routerLink]="[]" fragment="repertoire" [class.active]="activeSectionId === 'repertoire'">Repertoire</a></li>
@@ -25,8 +37,8 @@
   <p class="hero-tagline">Lorem ipsum dolor sit amet. Lorem, ipsum dolor.</p>
 
   <div class="hero-cta">
-    <a [routerLink]="[]" fragment="booking" class="btn-primary">
-      <span>Termin anfragen</span>
+    <a [routerLink]="[]" fragment="appointments" class="btn-primary">
+      <span>Nächste Auftritte</span>
     </a>
     <a [routerLink]="[]" fragment="repertoire" class="btn-secondary">Repertoire entdecken</a>
   </div>

@@ -21,42 +21,42 @@ interface Appointment {
 export class Appointments {
   private readonly isBrowser: boolean;
   readonly appointments: Appointment[] = [
-    {
-      day: '10',
-      month: 'Mai',
-      year: '2026',
-      datetime: '2026-05-10',
-      title: 'Frühlingskonzert',
-      location: 'Stadthalle Musterstadt',
-      type: 'Konzert',
-    },
-    {
-      day: '07',
-      month: 'Jun',
-      year: '2026',
-      datetime: '2026-06-07',
-      title: 'Gottesdienst zu Pfingsten',
-      location: 'St. Maria Kirche, Musterstadt',
-      type: 'Gottesdienst',
-    },
-    {
-      day: '19',
-      month: 'Jul',
-      year: '2026',
-      datetime: '2026-07-19',
-      title: 'Sommerfest der Gemeinde',
-      location: 'Gemeindepark Musterstadt',
-      type: 'Konzert',
-    },
-    {
-      day: '14',
-      month: 'Sep',
-      year: '2026',
-      datetime: '2026-09-14',
-      title: 'Herbstkonzert',
-      location: 'Kulturzentrum Mitte',
-      type: 'Konzert',
-    },
+    // {
+    //   day: '10',
+    //   month: 'Mai',
+    //   year: '2026',
+    //   datetime: '2026-05-10',
+    //   title: 'Frühlingskonzert',
+    //   location: 'Stadthalle Musterstadt',
+    //   type: 'Konzert',
+    // },
+    // {
+    //   day: '07',
+    //   month: 'Jun',
+    //   year: '2026',
+    //   datetime: '2026-06-07',
+    //   title: 'Gottesdienst zu Pfingsten',
+    //   location: 'St. Maria Kirche, Musterstadt',
+    //   type: 'Gottesdienst',
+    // },
+    // {
+    //   day: '19',
+    //   month: 'Jul',
+    //   year: '2026',
+    //   datetime: '2026-07-19',
+    //   title: 'Sommerfest der Gemeinde',
+    //   location: 'Gemeindepark Musterstadt',
+    //   type: 'Konzert',
+    // },
+    // {
+    //   day: '14',
+    //   month: 'Sep',
+    //   year: '2026',
+    //   datetime: '2026-09-14',
+    //   title: 'Herbstkonzert',
+    //   location: 'Kulturzentrum Mitte',
+    //   type: 'Konzert',
+    // },
   ];
 
   constructor(@Inject(PLATFORM_ID) platformId: object) {
