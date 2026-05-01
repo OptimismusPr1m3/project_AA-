@@ -65,7 +65,10 @@ export class Appointments {
 
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;
-    this.initScrollAnimations();
+    if (this.appointments.length > 0) {
+      this.initScrollAnimations();
+    }
+    
   }
 
   // ── Scroll Animationen für Sections ──
