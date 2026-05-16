@@ -7,6 +7,7 @@ interface Appointment {
   month: string;
   year: string;
   datetime: string;
+  time: string;
   title: string;
   location: string;
   type: 'Konzert' | 'Gottesdienst' | 'Sonstiges';
@@ -21,15 +22,16 @@ interface Appointment {
 export class Appointments {
   private readonly isBrowser: boolean;
   readonly appointments: Appointment[] = [
-    // {
-    //   day: '10',
-    //   month: 'Mai',
-    //   year: '2026',
-    //   datetime: '2026-05-10',
-    //   title: 'Frühlingskonzert',
-    //   location: 'Stadthalle Musterstadt',
-    //   type: 'Konzert',
-    // },
+    {
+      day: '13',
+      month: 'September',
+      year: '2026',
+      datetime: '2026-09-13',
+      time: 'Ausstehend',
+      title: 'Gottesdienst',
+      location: 'Oldisleben, St. Johannis Kirche',
+      type: 'Gottesdienst',
+    },
     // {
     //   day: '07',
     //   month: 'Jun',

@@ -93,15 +93,51 @@
   min-width: 0;
 }
 
+.apt-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+  min-width: 0;
+}
+
 .apt-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.35rem;
   font-weight: 400;
   color: #e8e8f0;
-  margin-bottom: 0.4rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.apt-time-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  flex-shrink: 0;
+}
+
+.apt-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold-pale), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  font-style: normal;
+}
+
+.apt-time-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(168, 180, 192, 0.6);
 }
 
 .apt-location {
@@ -170,11 +206,14 @@
     padding: 1.5rem;
   }
 
-  .apt-type {
+  .apt-time-col {
     grid-column: 2;
     grid-row: 2;
-    align-self: start;
-    width: fit-content;
+    align-items: flex-start;
+  }
+
+  .apt-time {
+    font-size: 1.5rem;
   }
 
   .apt-day {
